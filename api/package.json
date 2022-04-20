@@ -1,0 +1,19 @@
+{
+  "name": "link-shortener-api",
+  "version": "1.0.0",
+  "description": "API of the link shortener HSW project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Dernovoj (dernovoj@frostbear.com)",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.3",
+    "knex": "^1.0.7",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.3",
+    "prettier": "^2.6.2"
+  }
+}

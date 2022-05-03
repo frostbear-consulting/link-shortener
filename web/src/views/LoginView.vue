@@ -13,13 +13,18 @@
         </div>
 
         <div class='text-right button-container'>
-            <button class='btn btn-primary'>Sign in</button>
+            <button type='submit' class='btn btn-primary'>Sign in</button>
         </div>
+
+        <router-link to='/register'>Register new account</router-link>
 
     </form>
 </template>
 
 <script>
+import { POST } from '@/http-client';
+import { session } from '@/stores/session.store';
+
 export default {
     name: 'LoginView',
 
@@ -31,9 +36,31 @@ export default {
     },
 
     methods: {
-        formSubmitted() {
-            // TODO Login
+        async formSubmitted() {
+            const body = {
+                user: this.user,
+                password: this.password,
+            };
+
+            const response = await POST('api/login', body);
+
+            session.commit(
+                'signIn',
+                response.body.idUser,
+                response.body.firstName,
+                response.body.lastName,
+                response.body.name,
+                response.body.email,
+            );
+
+            this.$router.push({ name: 'dashboard' });
         },
+    },
+
+    mounted() {
+        if (session.getters.isAuthenticated) {
+            this.$router.push({ name: 'dashboard' });
+        }
     },
 };
 </script>

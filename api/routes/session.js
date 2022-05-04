@@ -1,5 +1,6 @@
 // session.js
 const sessionService = require('../services/session');
+const userService = require('../services/user');
 const config = require('../config');
 
 const login = async function (req, res) {
@@ -25,6 +26,21 @@ const logout = async function (req, res) {
     res.json({ success: true });
 };
 
+const register = async function (req, res) {
+    const { body } = req;
+    const db = req.app.get('db');
+
+    await userService.register(body, db);
+
+    const token = await sessionService.login(body.name, body.password, db);
+
+    res.cookie(config.cookieName, token);
+
+    const session = await sessionService.getSession(token, db);
+
+    res.json(session);
+};
+
 module.exports = function (app) {
     // Login
     app.post('/api/login', login);
@@ -32,4 +48,6 @@ module.exports = function (app) {
     app.get('/api/session', getSession);
     // Logout
     app.delete('/api/session', logout);
+
+    app.post('/api/register', register);
 };

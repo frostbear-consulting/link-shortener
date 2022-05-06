@@ -64,7 +64,7 @@ exports.getSession = async function (token, db) {
         const session = await trx('session')
             .innerJoin('user', 'user.idUser', '=', 'session.user_id')
             .where({ token })
-            .first(['name', 'firstName', 'lastName', 'email', 'expiresAt']);
+            .first(['idUser', 'name', 'firstName', 'lastName', 'email', 'expiresAt']);
 
         if (!session) {
             return null;

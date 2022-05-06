@@ -20,6 +20,7 @@ app.use(require('./middlewares/01_session'));
 
 require('./routes/root')(app);
 require('./routes/session')(app);
+require('./routes/link')(app);
 
 app.listen(config.port, function () {
     console.log('The app is listening on port  ' + config.port);

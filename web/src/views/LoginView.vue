@@ -24,6 +24,7 @@
 <script>
 import { POST } from '@/http-client';
 import { session } from '@/stores/session.store';
+import { useTitle } from '@/lib';
 
 export default {
     name: 'LoginView',
@@ -61,6 +62,14 @@ export default {
         if (session.getters.isAuthenticated) {
             this.$router.push({ name: 'dashboard' });
         }
+
+        useTitle('Login');
+
+        document.body.classList.add('login-view');
+    },
+
+    unmounted() {
+        document.body.classList.remove('login-view');
     },
 };
 </script>
@@ -82,13 +91,7 @@ form {
 </style>
 
 <style>
-body, html {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-body {
+body.login-view {
     background: url('https://images.unsplash.com/photo-1637433926966-c433757b0222?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80') center center no-repeat;
     background-size: cover;
 }

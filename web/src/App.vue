@@ -37,3 +37,11 @@ export default {
         <router-view v-if='loaded' />
     </div>
 </template>
+
+<style>
+body, html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+</style>

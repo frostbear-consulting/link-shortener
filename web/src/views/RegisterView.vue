@@ -81,6 +81,12 @@ export default {
 
     mounted() {
         useTitle('Register');
+
+        document.body.classList.add('register-view');
+    },
+
+    unmounted() {
+        document.body.classList.remove('register-view');
     },
 };
 </script>
@@ -102,13 +108,7 @@ form {
 </style>
 
 <style>
-body, html {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-body {
+body.register-view {
     background: url('https://images.unsplash.com/photo-1646435854908-26c027dc7aed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80') center center no-repeat;
     background-size: cover;
 }

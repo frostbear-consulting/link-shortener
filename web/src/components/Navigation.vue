@@ -1,7 +1,9 @@
 <template>
 
     <header class='navbar'>
-        <section class='navbar-section'></section>
+        <section class='navbar-section'>
+            <router-link class='btn btn-primary' :to='{name: "createLink"}'>Create link</router-link>
+        </section>
         <section class='navbar-section'>
             <button type='button' @click='onLogoutClick' class='btn btn-link'>Logout</button>
         </section>
@@ -29,10 +31,10 @@ export default {
 
 <style scoped>
 header {
-    background: #fff;
+    background: #ffc;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     margin: 1rem 0;
-    padding: 0.25rem 0;
+    padding: 0.25rem 0.5rem;
 }
 </style>

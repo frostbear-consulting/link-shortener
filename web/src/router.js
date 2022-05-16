@@ -23,6 +23,19 @@ const router = createRouter({
             name: 'dashboard',
             component: () => import('@/views/DashboardView'),
         },
+
+        {
+            path: '/create',
+            name: 'createLink',
+            component: () => import('@/views/CreateLinkView'),
+        },
+
+        {
+            path: '/r/:token',
+            name: 'redirect',
+            component: () => import('@/views/RedirectView'),
+            meta: { public: true },
+        },
     ],
 });
 
